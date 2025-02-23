@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>INST377 Lab4 Assignment</title>
+    </head>
+    <style>
+        body{
+            background-color: orange;
+        }
+        .container{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .section{
+            background-color: purple;
+            border: 2px solid rgb(249, 247, 247);
+            text-align: center;
+            padding:5px;
+            border-radius: 15px;
+            margin: 5px;
+            margin-left: 10px;
+            width: 40%
+        }
+    </style>
+    <body>
+        <h1 id="h1">INST377 - Lab4</h1>
+    <div class="container">
+        <div class="section">
+        <form name="nameForm" onsubmit="return formValidation()">
+            <label for="Name">Name:</label>
+            <input type="text" id="firstName" required>
+            <button>Alert Me!</button>
+        </form>
+        </div>
+
+        <div class="section">
+            <button id="change" onclick="changeColor()">Change Color</button>
+        </div>
+        
+        <div class="section">
+            <form name="testerForm" onsubmit="return textValidation()">
+                <label for="textName">Text Tester:</label>
+                <input type="text" id="texterName" required>
+                <button>Validate Text</button>
+            </form>
+            </div>
+            <div class="section">
+                <button onclick="addText()">Add Text</button>
+            </div>
+        </div>
+       
+        <script type="text/javascript">
+            function formValidation(){
+                let name= document.getElementById("firstName").value
+    
+                console.log('Validating user input:', name)
+                alert("Hi "+ name +"!")
+                return true;
+            }
+
+            function changeColor(){
+    
+                console.log('Attempting to change color of text, current color is:', document.body.style.backgroundColor )
+        
+                if(document.body.style.backgroundColor == "orange"){
+                    document.body.style.backgroundColor = "aqua"
+                }else{
+                    document.body.style.backgroundColor = "orange"
+                }
+                console.log("was able to change the color",  document.body.style.backgroundColor )  
+
+            }
+            function textValidation(){
+                const validationRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+                let name= document.getElementById("texterName").value
+
+                if(validationRegex.test(name)){
+                    alert("I cannot let you do that!")
+                    return false
+                }else{
+                    return true;
+                }
+            }
+            function addText(){
+                let heading= document.getElementById("h1");
+                heading.textContent += " - Adding Text";
+            }
+
+        
+        </script>
+    </body>
+</html>
